@@ -33,7 +33,7 @@ public class Junit5Annotations {
     void after() {
         System.out.println("After each");
     }
-
+//aaa
     @AfterAll
     static void shutDown() {
         System.out.println("Shutdown here");
