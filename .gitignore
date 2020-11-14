@@ -39,4 +39,4 @@ target/
 /gradlew.bat
 .todo
 local.properties
-docs/*
+src\test\java\docs
