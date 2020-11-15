@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import java.io.File;
+
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -18,6 +20,7 @@ public class ToolsQaPracticeFormTests {
     @BeforeAll
     static  void setup() {
         Configuration.startMaximized = true;
+
     }
 
     @Test
@@ -25,11 +28,13 @@ public class ToolsQaPracticeFormTests {
         String firstName = "Privet",
                 lastName = "Kakdela",
                 userEmail = "privetkakdela@yahoo.com",
-                userGender = "Other",
-                userNumber = "+79211234578",
+                userGender = "Female",
+                userNumber = "0987654321",
                 dateOfBirthMonth = "February",
                 dateOfBirthYear = "1950",
-                dateOfBirthDay = "19";
+                dateOfBirthDay = "19",
+                address = "City, street, building, floor, 999";
+        File file = new File("src/test/resources/pic.jpg");
 
         open("https://demoqa.com/automation-practice-form");
 
@@ -42,9 +47,23 @@ public class ToolsQaPracticeFormTests {
         $(".react-datepicker__month-select").selectOption(dateOfBirthMonth);
         $(".react-datepicker__year-select").selectOption(dateOfBirthYear);
         $(".react-datepicker__month").$(byText(dateOfBirthDay)).click();
-//        $(".react-datepicker__day--0" +dateOfBirthDay).click();
-        $("#subjectsContainer").click();
-//        $("#subjectsContainer").selectOption("Math");
+        $("#subjectsInput").val("m");
+        $(".subjects-auto-complete__menu-list").$(byText("Chemistry")).click();
+        $("#subjectsInput").val("e");
+        $(".subjects-auto-complete__menu-list").$(byText("English")).click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Reading")).click();
+        $("#uploadPicture").uploadFile(file);
+        $("#currentAddress").val(address);
+        $("#stateCity-wrapper").$("#state").click();
+        $("#stateCity-wrapper").$("#state").$(byText("Uttar Pradesh")).click();
+        $("#stateCity-wrapper").$("#city").click();
+        $("#stateCity-wrapper").$("#city").$(byText("Lucknow")).click();
+        $("#submit").click();
+
+//        Checking that the result form contains all values that were filled.
+        $("#example-modal-sizes-title-lg").exists();
+        $
 
         System.out.println("aaaa");
 
