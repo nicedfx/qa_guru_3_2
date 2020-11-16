@@ -32,7 +32,7 @@ public class ToolsQaPracticeFormTests {
                 hobbie1 = "Sports",
                 hobbie2 = "Reading",
                 state = "Uttar Pradesh",city = "Lucknow";
-        File file = new File("src/test/resources/pic.jpg");
+        File file = new File("src/test/resources/pic2.jpg");
         String filename = file.getName();
 
 
