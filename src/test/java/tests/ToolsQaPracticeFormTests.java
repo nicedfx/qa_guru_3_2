@@ -13,6 +13,7 @@ public class ToolsQaPracticeFormTests {
     @BeforeAll
     static  void setup() {
         Configuration.startMaximized = true;
+        Configuration.browser = "firefox";
 
     }
 
