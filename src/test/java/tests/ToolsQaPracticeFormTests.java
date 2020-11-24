@@ -8,13 +8,14 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
+/**
+ *
+ */
 public class ToolsQaPracticeFormTests {
 
     @BeforeAll
     static  void setup() {
         Configuration.startMaximized = true;
-        Configuration.browser = "firefox";
-
     }
 
     @Test
@@ -35,12 +36,8 @@ public class ToolsQaPracticeFormTests {
                 state = "Uttar Pradesh",city = "Lucknow";
         File file = new File("src/test/resources/pic2.jpg");
         String filename = file.getName();
-
-
         open("https://demoqa.com/automation-practice-form");
-
 // Filling out the form
-
         $("#firstName").val(firstName);
         $("#lastName").val(lastName);
         $("#userEmail").val(userEmail);
@@ -58,14 +55,12 @@ public class ToolsQaPracticeFormTests {
         $("#hobbiesWrapper").$(byText(hobbie2)).click();
         $("#uploadPicture").uploadFile(file);
         $("#currentAddress").val(address);
-        $("#stateCity-wrapper").$("#state").click();
+        $("#stateCity-wrapper").$("#state").scrollIntoView(true).click();
         $("#stateCity-wrapper").$("#state").$(byText(state)).click();
         $("#stateCity-wrapper").$("#city").click();
         $("#stateCity-wrapper").$("#city").$(byText(city)).click();
         $("#submit").click();
-
 // Checking that the result form contains all values that were filled.
-
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
         $x("/html/body/div[3]/div/div/div[2]/div/table/tbody/tr[1]/td[1]").shouldHave(text("Student Name"));
@@ -97,6 +92,5 @@ public class ToolsQaPracticeFormTests {
 
         $x("/html/body/div[3]/div/div/div[2]/div/table/tbody/tr[10]/td[1]").shouldHave(text("State and City"));
         $x("/html/body/div[3]/div/div/div[2]/div/table/tbody/tr[10]/td[2]").shouldHave(text(state + " " + city));
-
     }
 }
